@@ -25,6 +25,7 @@ Promise.allSettled([promise1, promise2, promise3])
       }
     });
   })
+
   .catch((error) => {
     // Capturamos cualquier error que ocurra durante el manejo de las Promises
     console.error('Error:', error);

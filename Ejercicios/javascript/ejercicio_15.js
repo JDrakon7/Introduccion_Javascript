@@ -2,16 +2,16 @@
 // "Error: Promise rechazada".
 
 // Creamos una nueva Promise
-const miPromise = new Promise((resolve, reject) => {
-    // Simulamos una operación que tome un tiempo
-    setTimeout(() => {
-        // Rechazamos la Promise después de 2 segundos
-        reject(new Error('Promise rechazada'));
-    }, 2000); // 2000 milisegundos = 2 segundos
+const mi_promesa = new Promise((resolve, reject) => {
+  // Simulamos una operación que tome un tiempo
+  setTimeout(() => {
+    // Rechazamos la Promise después de 2 segundos
+    reject(new Error('Promise rechazada'));
+  }, 2000); // 2000 milisegundos = 2 segundos
 });
 
 // Capturamos el error si la Promise es rechazada
-miPromise.catch((error) => {
-    // Imprimimos el mensaje de error
-    console.error('Error:', error.message);
+mi_promesa.catch((error) => {
+  // Imprimimos el mensaje de error
+  console.error('Error:', error.message);
 });
