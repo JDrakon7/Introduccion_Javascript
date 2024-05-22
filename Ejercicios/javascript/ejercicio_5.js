@@ -24,9 +24,9 @@ function every(array, callback) {
 }
 
 
-//Ejemplo de uso
+//Ejemplo de uso numeros pares 
 
 const numeros = [2, 4, 6, 8]
 const esPar = num => num % 2 === 0
-const todosPares = every(numeros, esPar)
-console.log(todosPares); // true
+const todos_pares = every(numeros, esPar)
+console.log(todos_pares); // true

@@ -13,68 +13,73 @@
 
 
 // Función para validar valores numéricos
-function validarNumero(valor) {
-    return !isNaN(parseFloat(valor)) && isFinite(valor);
-  }
-  
-  // Función para validar valores alfanuméricos
-  function validarAlfanumerico(valor) {
-    return /^[a-zA-Z]+$/.test(valor);
-  }
-  
-  // Función para validar emails
-  function validarEmail(valor) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor);
-  }
-  
-  // Función para validar fechas
-  function validarFecha(valor) {
-    return !isNaN(Date.parse(valor));
-  }
-  
-  // Crear un objeto proxy para la validación
-  const proxyValidacion = new Proxy({}, {
-    set: function(target, propiedad, valor) {
-      if (propiedad === 'numerico') {
-        if (!validarNumero(valor)) {
-          console.error('Error: el valor debe ser numérico');
-          return false;
-        }
-      } else if (propiedad === 'alfanumerico') {
-        if (!validarAlfanumerico(valor)) {
-          console.error('Error: el valor debe ser alfanumérico');
-          return false;
-        }
-      } else if (propiedad === 'email') {
-        if (!validarEmail(valor)) {
-          console.error('Error: el valor debe ser un email válido');
-          return false;
-        }
-      } else if (propiedad === 'fecha') {
-        if (!validarFecha(valor)) {
-          console.error('Error: el valor debe ser una fecha válida');
-          return false;
-        }
-      } else {
-        if (typeof valor === 'string' && (valor.trim() !== valor || valor.trim().length === 0)) {
-          console.error('Error: no se permiten espacios en blanco al inicio o al final');
-          return false;
-        }
+function validar_numero(valor) {
+  return !isNaN(parseFloat(valor)) && isFinite(valor);
+}
+
+// Función para validar valores alfanuméricos
+function validar_alfanumerico(valor) {
+  return /^[a-zA-Z]+$/.test(valor);
+}
+
+// Función para validar emails
+function validar_email(valor) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor);
+}
+
+// Función para validar fechas
+function validar_fecha(valor) {
+  return !isNaN(Date.parse(valor));
+}
+
+// Crear un objeto proxy para la validación
+const proxy_validacion = new Proxy({}, {
+  set: function (target, propiedad, valor) {
+    if (propiedad === 'numerico') {
+      console.log("Proxy numero aprobado")
+      if (!validar_numero(valor)) {
+        console.error('Error: el valor debe ser numérico');
+        return false;
       }
-  
-      target[propiedad] = valor;
-      return true;
+    } else if (propiedad === 'alfanumerico') {
+      console.log("Proxy alfanumerico aprobado")
+      if (!validar_alfanumerico(valor)) {
+        console.error('Error: el valor debe ser alfanumérico');
+        return false;
+      }
+    } else if (propiedad === 'email') {
+      console.log("Proxy email aprobado")
+      if (!validar_email(valor)) {
+        console.error('Error: el valor debe ser un email válido');
+        return false;
+      }
+    } else if (propiedad === 'fecha') {
+      console.log("Proxy fecha aprobado")
+      if (!validar_fecha(valor)) {
+        console.error('Error: el valor debe ser una fecha válida');
+        return false;
+      }
+    } else {
+      if (typeof valor === 'string' && (valor.trim() !== valor || valor.trim().length === 0))
+        console.log("Proxy Sin espacios en blanco al incio o al final aprobado")
+      {
+        console.error('Error: no se permiten espacios en blanco al inicio o al final');
+        return false;
+      }
     }
-  });
-  
-  // Ejemplo de uso del proxy para la validación
-  proxyValidacion.numerico = 123; // Correcto: valor numérico
-  proxyValidacion.numerico = 'abc'; // Error: el valor debe ser numérico
-  proxyValidacion.alfanumerico = 'abcd'; // Correcto: valor alfanumérico
-  proxyValidacion.alfanumerico = '123'; // Error: el valor debe ser alfanumérico
-  proxyValidacion.email = 'correo@dominio.com'; // Correcto: email válido
-  proxyValidacion.email = 'correoinvalido.com'; // Error: el valor debe ser un email válido
-  proxyValidacion.fecha = '2024-05-25'; // Correcto: fecha válida
-  proxyValidacion.fecha = 'fecha'; // Error: el valor debe ser una fecha válida
-  proxyValidacion.otro = '  texto  '; // Error: no se permiten espacios en blanco al inicio o al final
-  
+
+    target[propiedad] = valor;
+    return true;
+  }
+});
+
+// Ejemplo de uso del proxy para la validación
+proxy_validacion.numerico = 123; // Correcto: valor numérico
+proxy_validacion.numerico = 'abc'; // Error: el valor debe ser numérico
+proxy_validacion.alfanumerico = 'abcd'; // Correcto: valor alfanumérico
+proxy_validacion.alfanumerico = '123'; // Error: el valor debe ser alfanumérico
+proxy_validacion.email = 'correo@dominio.com'; // Correcto: email válido
+proxy_validacion.email = 'correoinvalido.com'; // Error: el valor debe ser un email válido
+proxy_validacion.fecha = '2024-05-25'; // Correcto: fecha válida
+proxy_validacion.fecha = 'fecha'; // Error: el valor debe ser una fecha válida
+proxy_validacion.otro = '  texto  '; // Error: no se permiten espacios en blanco al inicio o al final

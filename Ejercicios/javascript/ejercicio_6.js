@@ -11,10 +11,7 @@ function some(array, callback) {
   for (let i = 0; i < array.length; i++) {
     // Recorrer cada elemento en el array de entrada usando un bucle for
     // i es el índice del elemento actual
-    const numeros = [1, 3, 5, 7];
-    const esPar = num => num % 2 === 0;
-    const alMenosUnPar = some(numeros, esPar);
-    console.log(alMenosUnPar); // false
+
     if (callback(array[i])) {
       // Si el callback devuelve true para el elemento actual
       // array[i] es el elemento actual del array
@@ -27,3 +24,8 @@ function some(array, callback) {
   // Devolver false
 }
 
+
+const numeros = [1, 3, 5, 7];
+const esPar = num => num % 2 === 0;
+const alMenosUnPar = some(numeros, esPar);
+console.log(alMenosUnPar); // false

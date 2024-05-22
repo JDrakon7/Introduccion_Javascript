@@ -38,12 +38,25 @@ function dropWhile(array, callback) {
   // Devolver el nuevo array con los elementos que no cumplieron la condición
 }
 
-
-function esMenorA5(num) {
+// Mayor a 5
+function menor_5(num) {
   return num < 5;
 }
 
 const numeros = [2, 4, 6, 3, 1, 7, 8];
-const numerosFiltrados = dropWhile(numeros, esMenorA5);
+const numerosFiltrados = dropWhile(numeros, menor_5);
 
 console.log(numerosFiltrados); // Output: [6, 3, 1, 7, 8]
+
+
+
+// Numero negativo
+
+function negativo(num) {
+  return num < 0
+}
+
+const numeros_total = [-2, -4, 6, -3, 1, 7, 8]
+const numeros_filtadros = dropWhile(numeros, negativo)
+
+console.log(numeros_filtadros)
